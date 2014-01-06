@@ -20,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/mixdown/mixdown-error/issues"
   },
-  "homepage": "https://github.com/mixdown/mixdown-error"
+  "homepage": "https://github.com/mixdown/mixdown-error",
+  "dependencies": {
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.16.2",
+    "pluggo": "0.0.2",
+    "hammock": "~0.1.4"
+  }
 }
