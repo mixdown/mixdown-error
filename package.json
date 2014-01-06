@@ -1,6 +1,6 @@
 {
   "name": "mixdown-error",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Error response plugin for mixdown.js",
   "main": "index.js",
   "scripts": {
