@@ -1,0 +1,24 @@
+{
+  "name": "mixdown-error",
+  "version": "0.0.0",
+  "description": "Error response plugin for mixdown.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec -u tdd test/tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mixdown/mixdown-error.git"
+  },
+  "keywords": [
+    "mixdown",
+    "error",
+    "plugin"
+  ],
+  "author": "Tommy Messbauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixdown/mixdown-error/issues"
+  },
+  "homepage": "https://github.com/mixdown/mixdown-error"
+}
