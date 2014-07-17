@@ -21,7 +21,7 @@ suite('Test error plugin', function() {
   test('Test fail', function(done) {
     var httpContext = new HttpContext(new MockRequest({}), new MockResponse());
     var res = httpContext.response;
-    var gold = '500 Error on page\nfail test\nError: fail test\n    at Context.<anonymous>';
+    var gold = '500 Error on page\n(if you get an http 200 then the request failed upstream)\nError: fail test\n    at Context.<anonymous>';
 
     res.on('end', function(err, data) {
       var body = data.body;
@@ -40,7 +40,7 @@ suite('Test error plugin', function() {
       url: '/foo'
     }), new MockResponse());
     var res = httpContext.response;
-    var gold = '404 Not Found\nnot found test\nError: not found test\n    at Context.<anonymous>';
+    var gold = '404 Not Found\n(if you get an http 200 then the request failed upstream)\nError: not found test\n    at Context.<anonymous>';
 
     res.on('end', function(err, data) {
       var body = data.body;
