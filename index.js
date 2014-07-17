@@ -10,7 +10,7 @@ module.exports = BasePlugin.extend({
       }, headers));
     }
 
-    res.end('500 Error on page\nfail test\nError: fail test\n    at Context.<anonymous>' + this.formatError(err));
+    res.end('500 Error on page\n(if you get an http 200 then the request failed upstream)\nError: fail test\n    at Context.<anonymous>' + this.formatError(err));
   },
 
   notFound: function(err, httpContext, headers) {
@@ -21,7 +21,7 @@ module.exports = BasePlugin.extend({
       }, headers));
     }
 
-    res.end('404 Not Found\nnot found test\nError: not found test\n    at Context.<anonymous>' + this.formatError(err));
+    res.end('404 Not Found\n(if you get an http 200 then the request failed upstream)\nError: not found test\n    at Context.<anonymous>' + this.formatError(err));
   },
 
   formatError: function(err) {
