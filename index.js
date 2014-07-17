@@ -1,55 +1,45 @@
-var BasePlugin = require('../../index.js').Plugin;
+var BasePlugin = require('mixdown-app').Plugin;
 var _ = require('lodash');
 
 module.exports = BasePlugin.extend({
+  fail: function(err, httpContext, headers) {
+    var res = httpContext.response;
+    if (!res.headersSent) {
+      res.writeHead(500, _.extend({
+        'Content-Type': 'text/plain'
+      }, headers));
+    }
 
-  init: function(namespace) {
-    namespace = namespace || 'error';
+    res.end('500 Error on page\nfail test\nError: fail test\n    at Context.<anonymous>' + this.formatError(err));
+  },
 
-    this.attach = function(options) {
+  notFound: function(err, httpContext, headers) {
+    var res = httpContext.response;
+    if (!res.headersSent) {
+      res.writeHead(404, _.extend({
+        'Content-Type': 'text/plain'
+      }, headers));
+    }
 
-      // handle the weirdness of errors in javascript
-      var formatError = function(err) {
-        var msg = '';
+    res.end('404 Not Found\nnot found test\nError: not found test\n    at Context.<anonymous>' + this.formatError(err));
+  },
 
-        if (typeof(err) === 'string') {
-          return err;
-        }
+  formatError: function(err) {
 
-        if (err && err.message) {
-          msg += err.message;
-        }
+    var msg = '';
 
-        if (err && err.stack) {
-          msg += '\n' + err.stack;
-        }
+    if (typeof(err) === 'string') {
+      return err;
+    }
 
-        return msg;
-      };
+    if (err && err.message) {
+      msg += err.message;
+    }
 
-      this[namespace] = {
+    if (err && err.stack) {
+      msg += '\n' + err.stack;
+    }
 
-        fail: function(err, res, headers) {
-          if (!res.headersSent) {
-            res.writeHead(500, _.extend({
-              'Content-Type': 'text/plain'
-            }, headers));
-          }
-
-          res.end('500 Error on page (if you got http 200, then the response failed mid-stream)\n' + formatError(err));
-        },
-
-        notFound: function(err, res, headers) {
-          if (!res.headersSent) {
-            res.writeHead(404, _.extend({
-              'Content-Type': 'text/plain'
-            }, headers));
-          }
-          res.end('404 Not Found (if you got http 200, then the response failed mid-stream)\n' + formatError(err));
-        }
-
-      };
-
-    };
+    return msg;
   }
 });
