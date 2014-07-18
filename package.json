@@ -25,7 +25,8 @@
     "lodash": "~2.4.1"
   },
   "devDependencies": {
-    "mocha": "~1.20.0",
-    "mixdown-app": "~3.0.4"
+    "mixdown-app": "~3.0.4",
+    "mixdown-router": "git://github.com/mixdown/router#3x",
+    "mocha": "~1.20.0"
   }
 }
